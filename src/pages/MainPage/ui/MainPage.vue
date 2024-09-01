@@ -28,8 +28,6 @@
 </template>
 
 <script>
-// import randomizeQuestions from '@/shared/lib/helpers/randomizeQuestions.js'
-
 export default {
   name: 'HelloWorld',
   data() {
@@ -68,16 +66,11 @@ export default {
     },
     handleSetAnswer(selectedAnswer, question) {
       this.currentQuestionNumber ++
-      // console.log(selectedAnswer)
-      // console.log(question)
       this.userAnswers.push({...selectedAnswer, question: question.question})
-
-      console.log(this.userAnswers)
 
       if (this.userAnswers.length === this.quizData.length) {
         this.$router.push({ path: '/results', query: { answers: this.userAnswers } });
       }
-        // this.$router.push('results')
     },
     randomizeQuestions(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -97,7 +90,6 @@ export default {
 
   mounted() {
     this.loadData()
-    console.log('mounted')
   }
 }
 </script>
