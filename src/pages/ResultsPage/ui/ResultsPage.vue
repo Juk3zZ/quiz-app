@@ -1,11 +1,12 @@
 <template>
-    <div class="container">
+  <div>
+    <div class="container" v-if="this.correctAnswers">
       <div class="header">
         <p v-html=headerTitle class="header-title"></p>
         <p v-html=headerText class="header-text"></p>
       </div>
       <div class="answers-wrapper">
-        <div v-for="answer in answers" :key="answer.text" v-bind:class="{ 'bg-green': answer.isCorrect, 'bg-red':  !answer.isCorrect }" class="answer-block">
+        <div v-for="answer in answers" :key="answer.text" :class="{ 'bg-green': answer.isCorrect, 'bg-red':  !answer.isCorrect }" class="answer-block">
           <div style="padding: 40px;">
             <p class="question">{{ answer.question }}</p>
             {{answer.text}}
@@ -14,6 +15,12 @@
       </div>
       <button class="button" @click="() => $router.push('/')">Пройти еще раз</button>  
     </div>
+    <div v-else style="display: flex; flex-direction: column; align-items: center;">
+      <h1>Чтобы посмотреть результаты пройдите тестирование</h1>
+      <button class="button" @click="() => $router.push('/')">Пройти тестирование</button>  
+    </div>
+  </div>
+
   </template>
   
   <script>
